@@ -1,0 +1,6 @@
+export type RiskBand='High'|'Elevated'|'Moderate'|'Low';
+export type RouteName='overview'|'simulate'|'patients';
+export interface PatientEncounter {
+ encounterId:string;patientId:string;age:number;gender:'M'|'F'|'Other';admissionType:'Emergency'|'Elective'|'Urgent'|'OPD';ward:'General'|'Semi-Private'|'ICU';serviceLine:string;primaryDiagnosis:string;secondaryDiagnoses:string[];admissionDate:string;dischargeDate:string;losDays:number;priorAdmissions12m:number;daysSinceLastDischarge:number|null;charlsonIndex:number;comorbidityCount:number;proceduresCount:number;hospitalBeds:number;totalBillInr:number;outOfPocketInr:number;insurance:string;bplCard:boolean;hospitalTier:string;teachingHospital:boolean;patientState:string;hospitalState:string;clinicalLabs:{hba1c:number;creatinine:number;haemoglobin:number;systolicBp:number};dischargeDisposition:string;followUpScheduled:boolean;riskProbability:number;riskBand:RiskBand;reviewed:boolean;clinicalNoteSummary:string;ragFeature:{neighborsRetrieved:number;historicalReadmissionRate:number;neighborCases:any[]};
+}
+export interface ScoreResult {probability:number;riskBand:RiskBand;mortalityRate:number;acuity:string;rationale:string[];disclaimer?:string}

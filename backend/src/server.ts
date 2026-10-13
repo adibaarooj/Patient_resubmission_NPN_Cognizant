@@ -1,0 +1,12 @@
+import express from 'express';
+import cors from 'cors';
+import { encountersRouter } from './routes/encounters';
+import { simulationRouter } from './routes/simulation';
+const app=express();
+app.use(cors({origin:'http://localhost:5173'}));
+app.use(express.json({limit:'1mb'}));
+app.get('/api/health',(_req,res)=>res.json({status:'ok',service:'CarePath API'}));
+app.use('/api/encounters',encountersRouter);
+app.use('/api',simulationRouter);
+const PORT=Number(process.env.PORT)||5000;
+app.listen(PORT,()=>console.log(`CarePath API listening at http://localhost:${PORT}`));
