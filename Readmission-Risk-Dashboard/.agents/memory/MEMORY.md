@@ -1,1 +1,0 @@
-- [Hospital discharge workflow](hospital-discharge-workflow.md) — doctors need encounter intake, prior-admission review, risk review, and a clear reviewed state.
