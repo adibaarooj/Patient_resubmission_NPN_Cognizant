@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Readmission Risk"
+description = "A frontend-only clinical dashboard prototype for reviewing synthetic 30-day readmission risk, similar past encounters, and model comparison metrics at discharge."
+version = "1.0.0"
+id = "artifacts/readmission-risk"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23050
+
+[services.development]
+run = "pnpm --filter @workspace/readmission-risk run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/readmission-risk", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/readmission-risk/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23050"
+BASE_PATH = "/"
